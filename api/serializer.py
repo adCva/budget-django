@@ -4,8 +4,8 @@ from .models import *
 class ExpendituresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expenditure
-        # fields = ('name', 'desc', 'spent', 'type', 'created_at')
-        fields = '__all__'
+        fields = ('id', 'name', 'desc', 'spent', 'type', 'created_at')
+        # fields = '__all__'
 
 
 class SpendingLimitSerializer(serializers.ModelSerializer):
