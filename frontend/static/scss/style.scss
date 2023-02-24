@@ -1,15 +1,35 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import 'reset';
+@import 'config';
 
-html {
-    // background-color: red;
+
+// Component.
+@import 'hero';
+@import 'content';
+@import 'card';
+@import 'forms';
+
+body {
+    font-family: $font;
 }
 
 .App {
-    h1 {
-        color: red;
-    }
+    position: relative;
+}
+
+
+.show-date-field {
+    display: block;
+}
+
+.hide-date-field {
+    display: none;
+}
+
+.edit-form {
+    display: block;
+    background-color: red;
+}
+
+.hide-edit-form {
+    display: none;
 }

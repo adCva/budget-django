@@ -1,0 +1,118 @@
+.form-wrapper {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+
+
+    // ===================== Main Container.
+    .form-container {
+        background-color: $white;
+        width: 90%;
+        max-width: 600px;
+        display: grid;
+        margin: 2rem auto 0;
+        padding: 1rem;
+        border-radius: 5px;
+
+        @media (min-width: $tablet-break) {
+            padding: 2rem 1.5rem;
+        }
+
+
+        // ===================== Form.
+        .form {
+            display: grid;
+
+
+            // ========= Form group.
+            .form-group {
+                display: grid;
+                margin-bottom: 2rem;
+
+                label {
+                    color: #333333;
+                    font-size: 0.8rem;
+                    letter-spacing: -0.3px;
+                    margin-bottom: 0.3rem;
+                }
+        
+                input {
+                    background-color: #eeeeee;
+                    padding: 0.7rem 1rem;
+                    border-radius: 5px;
+                }
+        
+                textarea {
+                    background-color: #eeeeee;
+                    padding: 0.7rem 1rem;
+                    border-radius: 5px;
+                }
+        
+                select {
+                    background-color: #eeeeee;
+                    padding: 0.7rem 1rem;
+                    border-radius: 5px;
+                }
+            }
+
+            // ========= Form group checkbox.
+            .form-group-check {
+                display: flex;
+                justify-content: space-between;
+            }
+
+
+            // ========= Submit Button.
+            .submit-btn {
+                background: linear-gradient(90deg, rgba(56,163,165,1) 0%, rgba(87,204,153,1) 35%, rgba(128,237,153,1) 100%);
+                color: $white;
+                height: 45px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        
+
+            // ========= Update Button.
+            .update-btn {
+                background: linear-gradient(90deg, rgba(244,140,6,1) 0%, rgba(250,163,7,1) 35%, rgba(255,186,8,1) 100%);
+                color: $white;
+                height: 45px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+
+        // ========= Cancel Button.
+        .confirm-btn {
+            background: linear-gradient(90deg, rgba(247,37,133,1) 0%, rgba(181,23,158,1) 35%, rgba(114,9,183,1) 100%);
+            color: $white;
+            height: 45px;
+            border-radius: 5px;
+            margin-top: 0.7rem;
+            cursor: pointer;
+        }
+
+
+        // ========= Cancel Button.
+        .close-form {
+            background: $hero-gradient;
+            color: $white;
+            height: 45px;
+            border-radius: 5px;
+            margin-top: 0.7rem;
+            cursor: pointer;
+        }
+    }
+}
+
+
+// ===================== Hide.
+.form-wrapper-show {
+    display: none;
+}

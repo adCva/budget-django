@@ -1,0 +1,35 @@
+// ============ Typographie.
+$font: 'Lato', sans-serif;
+$font-regular: 400;
+$font-bold: 700;
+$logo-font: 'Fredoka One', cursive;
+
+
+// ============ Colors.
+$white: #ffffff;
+$faded-white: #dddddd;
+$gray: #707070;
+$dark-gray: #343436;
+$blue: #335ae0;
+$purple: #6b34da;
+
+
+// ============ Others.
+$transition: all 0.25s ease-in-out;
+$tablet-break: 768px;
+
+
+$hero-gradient: linear-gradient(140deg, rgba(26,38,111,1) 0%, rgba(51,31,106,1) 40%, rgba(81,22,100,1) 100%);
+$card-gradient: linear-gradient(148deg, rgba(87,52,188,1) 0%, rgba(71,69,204,1) 40%, rgba(52,90,225,1) 100%);
+
+
+%button {
+    background: $card-gradient;
+    color: $white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: $transition;
+}

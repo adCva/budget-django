@@ -44,39 +44,49 @@ def expenditureList(request):
 
 
 @api_view(['GET'])
-def getExpenditure(request, pk):
-    expenditure = Expenditure.objects.get(id=pk)
-    serializer = ExpendituresSerializer(expenditure, many=False)
+def getData(request):
+    dataList = Expenditure.objects.all().order_by('-id')
+    serializer = ExpendituresSerializer(dataList, many=True)
 
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getDetail(request, pk):
+    item = Expenditure.objects.get(id=pk)
+    serializer = ExpendituresSerializer(item, many=False)
+    return Response(serializer.data)
 
-@csrf_exempt
-def createExpenditure(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        instance = Expenditure(
-            name = data['name'],
-            desc = data['desc'],
-            spent = data['spent'],
-            type = data['type'],
-        )
-        instance.save()
 
-        return JsonResponse({'id': instance.id})
+@api_view(['POST'])
+def createData(request):
+    newData = ExpendituresSerializer(data=request.data)
 
-    else:
-        return HttpResponseNotAllowed(['POST'])
+    if newData.is_valid():
+        newData.save()
+
+    return Response(newData.data)
+
+
+@api_view(['PUT'])
+def updateItem(request, pk):
+    try:
+        item = Expenditure.objects.get(id=pk)
+    except Expenditure.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
     
+    serializer = ExpendituresSerializer(item, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['DELETE'])
-def deleteExpenditure(request, pk):
-    expenditure = Expenditure.objects.get(id=pk)
-    expenditure.delete()
+def deleteItem(request, pk):
+    item = Expenditure.objects.get(id=pk)
+    item.delete()
 
-    expenditures = Expenditure.objects.all()
-    serializer = ExpendituresSerializer(expenditures, many=True)
-
-    return JsonResponse(serializer.data, safe=False)
+    return Response("Item deleted!")

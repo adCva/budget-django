@@ -1,0 +1,157 @@
+.hero-wrapper {
+    background: $hero-gradient;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0 3rem;
+    
+
+    @media (min-width: $tablet-break) {
+        padding: 2rem 0 6rem;
+    }
+
+
+    // ===================== Main Container.
+    .hero-container {
+        width: 90%;
+        max-width: 900px;
+
+
+        // ===================== Nav Container.
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            // ========= Logo.
+            .logo {
+                font-family: $logo-font;
+                font-size: 1.5rem;
+                font-weight: 700;
+                letter-spacing: 1px;
+
+                @media (min-width: $tablet-break) {
+                    font-size: 1.6rem;
+                }
+            }
+
+            // ========= Nav Button.
+            button {
+                @extend %button;
+                padding: 0.45rem 1.2rem 0.45rem 0.8rem;
+
+                @media (min-width: $tablet-break) {
+                    padding: 0.55rem 1.3rem 0.55rem 0.9rem;
+                }
+
+                .btn-icon {
+                    transition: $transition;
+                }
+
+                &:hover {
+                    .btn-icon {
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+        }
+
+
+        // ===================== Content Container.
+        .hero-group {
+            display: grid;
+            padding: 3.5rem 0 4.5rem;
+
+            @media (min-width: $tablet-break) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            // ========= Text Container.
+            .hero-text {
+                order: 1;
+                margin-top: 2.5rem;
+                text-align: center;
+
+                @media (min-width: $tablet-break) {
+                    all: unset;
+                }
+
+
+                .user-greet {
+                    color: $faded-white;
+                    font-size: 0.8rem;
+                    letter-spacing: -0.3px;
+                }
+
+
+                // ========= H1.
+                h1 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 2.5rem;
+                    font-weight: $font-bold;
+                    letter-spacing: -0.3px;
+                    margin: 0.4rem 0 2rem;
+
+                    @media (min-width: $tablet-break) {
+                        justify-content: flex-start;
+                    }
+
+
+                    span {
+                        color: $faded-white;
+                        font-size: 1.5rem;
+                        margin-right: 0.5rem;
+                    }
+                }
+
+
+                // ========= H4.
+                h4 {
+                    color: $faded-white;
+                    font-size: 1.1rem;
+                    letter-spacing: -0.3px;
+                    margin-bottom: 0.5rem
+                }
+
+
+                // ========= H5.
+                h5 {
+                    color: $faded-white;
+                    font-size: 1.1rem;
+                    letter-spacing: -0.3px;
+                    margin-bottom: 1.5rem
+                }
+
+
+                // ========= Button.
+                button {
+                    @extend %button;
+                    width: 110px;
+                    height: 40px;
+                    
+
+                    .btn-icon {
+                        transition: $transition;
+                    }
+
+
+                    &:hover {
+                        .btn-icon {
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+
+
+            // ========= Image.
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

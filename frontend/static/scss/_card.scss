@@ -1,0 +1,126 @@
+.card-wrapper {
+    background: $card-gradient;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.35rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+
+    // ===================== Main Container.
+    .card-container {
+        background: $white;
+        border-radius: 5px;
+        padding: 1rem 1rem 1rem 0.5rem;
+
+        @media (min-width: $tablet-break) {
+            display: grid;
+            grid-template-columns: 1fr 4fr 1fr;
+            align-items: center;
+        }
+
+
+        // ========= Type Logo.
+        .type-logo {
+            font-size: 2.5rem;
+
+            @media (min-width: $tablet-break) {
+                text-align: center;
+            }
+        }
+
+
+        // ===================== Info Container.
+        .card-details {
+            margin-top: 1rem;
+
+            @media (min-width: $tablet-break) {
+                margin-top: 0;
+            }
+
+
+            .name {
+                color: #333333;
+                font-size: 1.3rem;
+                font-weight: $font-bold;
+                letter-spacing: -0.3px;
+            }
+
+
+            .spent {
+                color: #333333;
+                font-size: 1.2rem;
+                margin: 1rem 0;
+            }
+
+
+            .desc {
+                color: #333333;
+                letter-spacing: -0.3px;
+                line-height: 1.2;
+
+                @media (min-width: $tablet-break) {
+                    max-width: 300px;
+                }
+            } 
+        }
+
+
+        // ===================== Buttons Container.
+        .card-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+
+            @media (min-width: $tablet-break) {
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-top: 0;
+            }
+
+
+            .edit-btn {
+                background: linear-gradient(90deg, rgba(67,97,238,1) 0%, rgba(72,149,239,1) 35%, rgba(76,201,240,1) 100%);
+                color: $white;
+                width: 50%;
+                height: 35px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: $transition;
+
+                @media (min-width: $tablet-break) {
+                    width: 100%;
+                }
+
+                &:hover {
+                    height: 40px;
+                }
+            }
+
+            
+            .delete-btn {
+                background: linear-gradient(90deg, rgba(247,37,133,1) 0%, rgba(181,23,158,1) 35%, rgba(114,9,183,1) 100%);
+                color: $white;
+                width: 50%;
+                height: 35px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: $transition;
+
+                @media (min-width: $tablet-break) {
+                    width: 100%;
+                }
+
+                &:hover {
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+
+
+.card-wrapper-hide {
+    display: none;
+}

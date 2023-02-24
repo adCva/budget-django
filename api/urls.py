@@ -3,9 +3,9 @@ from .views import *
 
 urlpatterns = [
     path('', apiOverview, name='api-overview'),
-    path('expenditures/', expenditureList, name='expenditures'),
-    path('exp-detail/<str:pk>/', getExpenditure, name='expenditure-detail'),
-    path('exp-create/', createExpenditure, name='expenditure-create'),
-    path('exp-delete/<str:pk>/', deleteExpenditure, name='expenditure-delete'),
-    path('limit/', SpendingLimitView.as_view()),
+    path('get-data/', getData, name='get-data'),
+    path('get-detail/<str:pk>/', getDetail, name='get-detail'),
+    path('exp-create/', createData, name='create-data'),
+    path('exp-update/<int:pk>/', updateItem, name='update-data'),
+    path('exp-delete/<int:pk>/', deleteItem, name='delete-data'),
 ]

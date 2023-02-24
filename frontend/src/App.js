@@ -1,18 +1,19 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import Form from './Components/Form';
+import React, { Suspense } from 'react';
+import Content from './Components/Content';
 import Helper from './Components/Helper';
+import Hero from './Components/Hero';
+
+const CreateForm = React.lazy(() => import('./Components/CreateForm'));
+const EditForm = React.lazy(() => import('./Components/EditForm'));
+const LimitForm = React.lazy(() => import('./Components/LimitForm'));
 
 function App() {
   return (
-    <div className='App'>
-      <Helper />
+    <div className="App">
+      <Hero />
+      <Content />
     </div>
-  )
+  );
 }
 
 export default App;
-
-const appDiv = document.getElementById("App");
-const root = createRoot(appDiv);
-root.render(<App />);

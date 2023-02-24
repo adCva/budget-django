@@ -1,0 +1,66 @@
+.content-wrapper {
+    margin-top: -4rem;
+
+    @media (min-width: $tablet-break) {
+        margin-top: -7rem;
+    }
+
+
+    // ===================== Main Container.
+    .content-container {
+        width: 90%;
+        max-width: 700px;
+        margin: 0 auto;
+
+
+        // ===================== Filters Container.
+        .filters-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+
+            button {
+                background: transparent;
+                color: $white;
+                cursor: pointer;
+                transition: $transition;
+
+                &:hover {
+                    color: $gray;
+                }
+            }
+        }
+
+
+        // ===================== Accorion Wrapper & Btn.
+        .accordion-wrapper {
+            // ========= Show more btn.
+            .accorion-btn {
+                background: transparent;
+                color: $blue;
+                display: block;
+                font-weight: $font-bold;
+                cursor: pointer;
+                margin: 1rem 0;
+                
+            }
+
+            .hide-accorion-btn {
+                display: none;
+            }
+
+
+            // ========= Accorion container.
+            .accordion-container {
+                transform: scale(1, 1);
+                transform-origin: top;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .accordion-hide {
+                transform: scale(1, 0);
+            }
+        }
+    }
+}

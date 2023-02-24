@@ -1,9 +1,450 @@
-* {
+/* ============================== Resets ==============================*/
+*, html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
   margin: 0;
   padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
   box-sizing: border-box;
 }
 
-.App h1 {
-  color: red;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.hero-wrapper .hero-container .hero-group .hero-text button, .hero-wrapper .hero-container nav button {
+  background: linear-gradient(148deg, rgb(87, 52, 188) 0%, rgb(71, 69, 204) 40%, rgb(52, 90, 225) 100%);
+  color: #ffffff;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.hero-wrapper {
+  background: linear-gradient(140deg, rgb(26, 38, 111) 0%, rgb(51, 31, 106) 40%, rgb(81, 22, 100) 100%);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0 3rem;
+}
+@media (min-width: 768px) {
+  .hero-wrapper {
+    padding: 2rem 0 6rem;
+  }
+}
+.hero-wrapper .hero-container {
+  width: 90%;
+  max-width: 900px;
+}
+.hero-wrapper .hero-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-wrapper .hero-container nav .logo {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+@media (min-width: 768px) {
+  .hero-wrapper .hero-container nav .logo {
+    font-size: 1.6rem;
+  }
+}
+.hero-wrapper .hero-container nav button {
+  padding: 0.45rem 1.2rem 0.45rem 0.8rem;
+}
+@media (min-width: 768px) {
+  .hero-wrapper .hero-container nav button {
+    padding: 0.55rem 1.3rem 0.55rem 0.9rem;
+  }
+}
+.hero-wrapper .hero-container nav button .btn-icon {
+  transition: all 0.25s ease-in-out;
+}
+.hero-wrapper .hero-container nav button:hover .btn-icon {
+  margin-right: 0.5rem;
+}
+.hero-wrapper .hero-container .hero-group {
+  display: grid;
+  padding: 3.5rem 0 4.5rem;
+}
+@media (min-width: 768px) {
+  .hero-wrapper .hero-container .hero-group {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.hero-wrapper .hero-container .hero-group .hero-text {
+  order: 1;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .hero-wrapper .hero-container .hero-group .hero-text {
+    all: unset;
+  }
+}
+.hero-wrapper .hero-container .hero-group .hero-text .user-greet {
+  color: #dddddd;
+  font-size: 0.8rem;
+  letter-spacing: -0.3px;
+}
+.hero-wrapper .hero-container .hero-group .hero-text h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin: 0.4rem 0 2rem;
+}
+@media (min-width: 768px) {
+  .hero-wrapper .hero-container .hero-group .hero-text h1 {
+    justify-content: flex-start;
+  }
+}
+.hero-wrapper .hero-container .hero-group .hero-text h1 span {
+  color: #dddddd;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+.hero-wrapper .hero-container .hero-group .hero-text h4 {
+  color: #dddddd;
+  font-size: 1.1rem;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.5rem;
+}
+.hero-wrapper .hero-container .hero-group .hero-text h5 {
+  color: #dddddd;
+  font-size: 1.1rem;
+  letter-spacing: -0.3px;
+  margin-bottom: 1.5rem;
+}
+.hero-wrapper .hero-container .hero-group .hero-text button {
+  width: 110px;
+  height: 40px;
+}
+.hero-wrapper .hero-container .hero-group .hero-text button .btn-icon {
+  transition: all 0.25s ease-in-out;
+}
+.hero-wrapper .hero-container .hero-group .hero-text button:hover .btn-icon {
+  margin-right: 0.5rem;
+}
+.hero-wrapper .hero-container .hero-group img {
+  width: 100%;
+}
+
+.content-wrapper {
+  margin-top: -4rem;
+}
+@media (min-width: 768px) {
+  .content-wrapper {
+    margin-top: -7rem;
+  }
+}
+.content-wrapper .content-container {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.content-wrapper .content-container .filters-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 550px;
+  margin: 0 auto 2rem;
+}
+.content-wrapper .content-container .filters-container button {
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.content-wrapper .content-container .filters-container button:hover {
+  color: #707070;
+}
+.content-wrapper .content-container .accordion-wrapper .accorion-btn {
+  background: transparent;
+  color: #335ae0;
+  display: block;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+.content-wrapper .content-container .accordion-wrapper .hide-accorion-btn {
+  display: none;
+}
+.content-wrapper .content-container .accordion-wrapper .accordion-container {
+  transform: scale(1, 1);
+  transform-origin: top;
+  transition: all 0.3s ease-in-out;
+}
+.content-wrapper .content-container .accordion-wrapper .accordion-hide {
+  transform: scale(1, 0);
+}
+
+.card-wrapper {
+  background: linear-gradient(148deg, rgb(87, 52, 188) 0%, rgb(71, 69, 204) 40%, rgb(52, 90, 225) 100%);
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.35rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.card-wrapper .card-container {
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 1rem 1rem 1rem 0.5rem;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+  }
+}
+.card-wrapper .card-container .type-logo {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .type-logo {
+    text-align: center;
+  }
+}
+.card-wrapper .card-container .card-details {
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .card-details {
+    margin-top: 0;
+  }
+}
+.card-wrapper .card-container .card-details .name {
+  color: #333333;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.card-wrapper .card-container .card-details .spent {
+  color: #333333;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+.card-wrapper .card-container .card-details .desc {
+  color: #333333;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .card-details .desc {
+    max-width: 300px;
+  }
+}
+.card-wrapper .card-container .card-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .card-buttons {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+}
+.card-wrapper .card-container .card-buttons .edit-btn {
+  background: linear-gradient(90deg, rgb(67, 97, 238) 0%, rgb(72, 149, 239) 35%, rgb(76, 201, 240) 100%);
+  color: #ffffff;
+  width: 50%;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .card-buttons .edit-btn {
+    width: 100%;
+  }
+}
+.card-wrapper .card-container .card-buttons .edit-btn:hover {
+  height: 40px;
+}
+.card-wrapper .card-container .card-buttons .delete-btn {
+  background: linear-gradient(90deg, rgb(247, 37, 133) 0%, rgb(181, 23, 158) 35%, rgb(114, 9, 183) 100%);
+  color: #ffffff;
+  width: 50%;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+@media (min-width: 768px) {
+  .card-wrapper .card-container .card-buttons .delete-btn {
+    width: 100%;
+  }
+}
+.card-wrapper .card-container .card-buttons .delete-btn:hover {
+  height: 40px;
+}
+
+.card-wrapper-hide {
+  display: none;
+}
+
+.form-wrapper {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+.form-wrapper .form-container {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 600px;
+  display: grid;
+  margin: 2rem auto 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+@media (min-width: 768px) {
+  .form-wrapper .form-container {
+    padding: 2rem 1.5rem;
+  }
+}
+.form-wrapper .form-container .form {
+  display: grid;
+}
+.form-wrapper .form-container .form .form-group {
+  display: grid;
+  margin-bottom: 2rem;
+}
+.form-wrapper .form-container .form .form-group label {
+  color: #333333;
+  font-size: 0.8rem;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.3rem;
+}
+.form-wrapper .form-container .form .form-group input {
+  background-color: #eeeeee;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+}
+.form-wrapper .form-container .form .form-group textarea {
+  background-color: #eeeeee;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+}
+.form-wrapper .form-container .form .form-group select {
+  background-color: #eeeeee;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+}
+.form-wrapper .form-container .form .form-group-check {
+  display: flex;
+  justify-content: space-between;
+}
+.form-wrapper .form-container .form .submit-btn {
+  background: linear-gradient(90deg, rgb(56, 163, 165) 0%, rgb(87, 204, 153) 35%, rgb(128, 237, 153) 100%);
+  color: #ffffff;
+  height: 45px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-wrapper .form-container .form .update-btn {
+  background: linear-gradient(90deg, rgb(244, 140, 6) 0%, rgb(250, 163, 7) 35%, rgb(255, 186, 8) 100%);
+  color: #ffffff;
+  height: 45px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-wrapper .form-container .confirm-btn {
+  background: linear-gradient(90deg, rgb(247, 37, 133) 0%, rgb(181, 23, 158) 35%, rgb(114, 9, 183) 100%);
+  color: #ffffff;
+  height: 45px;
+  border-radius: 5px;
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+.form-wrapper .form-container .close-form {
+  background: linear-gradient(140deg, rgb(26, 38, 111) 0%, rgb(51, 31, 106) 40%, rgb(81, 22, 100) 100%);
+  color: #ffffff;
+  height: 45px;
+  border-radius: 5px;
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+
+.form-wrapper-show {
+  display: none;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.App {
+  position: relative;
+}
+
+.show-date-field {
+  display: block;
+}
+
+.hide-date-field {
+  display: none;
+}
+
+.edit-form {
+  display: block;
+  background-color: red;
+}
+
+.hide-edit-form {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
