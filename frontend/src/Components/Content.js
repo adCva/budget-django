@@ -1,78 +1,55 @@
-import React, { useEffect } from 'react';
-import Card from './Card';
-// ================== React icons.
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import Card from "./Card";
+import axios from 'axios';
 // ================== Redux.
 import { useSelector, useDispatch  } from 'react-redux';
-import { changeFilter, openAccordion } from "../Redux/globalVarSlice";
-import { createData } from "../Redux/expenditureSlice";
-import { loadDataCall } from "../Middleware/loadData";
-import axios from 'axios';
+import { loadData } from "../Redux/expenditureSlice";
+import { changeFilter } from "../Redux/globalVarSlice";
+
 
 
 function Content() {
   const dispatch = useDispatch();
-  const accordion = useSelector((state) => state.globalVar.accordionOpened);
-  const filterBy = useSelector((state) => state.globalVar.filterBy);
-  const expendituresData = useSelector((state) => state.expenditures.expData);
-  const expendituresDataReverse = [...expendituresData].reverse();
-  const alwaysDisplay = expendituresDataReverse.slice(0, 3);
-  const accordionDisplay = expendituresDataReverse.slice(3, expendituresData.length)
-
-  
-  const dispatchFilter = (value) => {
-    dispatch(changeFilter({newFilter: value}));
-  };
-
-
-  const getPageData = async => {
-    let url = "http://127.0.0.1:8000/api/get-data/";
-    axios.get(url).then(response => dispatch(createData({newElement: response.data})))
-                  .catch(error => console.log(error))
-  }
+  // Redux state.
+  const expItems = useSelector((state) => state.expenditures.expData);
 
 
   useEffect(() => {
-    getPageData();
+    const callAPI = async () => {
+      axios.get("http://127.0.0.1:8000/api/get-data/")
+            .then(response => dispatch(loadData({newElement: response.data})))
+            .catch(error => console.log(error))
+    };
+
+    window.addEventListener("load", callAPI());
   }, []);
+
 
 
   return (
     <div className='content-wrapper'>
-        <div className='content-container'>
+      <div className='content-container'>
 
-            {/* =========== Filters container =========== */}
-            <div className='filters-container'>
-                <button onClick={() => dispatchFilter("All")}>All</button>
-                <button onClick={() => dispatchFilter("Home")}>Home</button>
-                <button onClick={() => dispatchFilter("Bill")}>Bills</button>
-                <button onClick={() => dispatchFilter("Food")}>Food</button>
-                <button onClick={() => dispatchFilter("Transport")}>Transport</button>
-                <button onClick={() => dispatchFilter("Miscellaneous")}>Miscellaneous</button>
-            </div>
-
-            {/* =========== Expenses container =========== */}
-            <div className='expenses-container'>
-                {alwaysDisplay.map((el, i) => {
-                  return (
-                    <Card key={i} pk={el.id} type={el.type} name={el.name} description={el.desc} spent={el.spent} createdAt={el.created_at} />
-                  )
-                })}
-            </div>
-
-            {/* =========== Accordion wrapper =========== */}
-            <div className='accordion-wrapper'>
-              <button className={filterBy !== "All" ? "accorion-btn hide-accorion-btn" : "accorion-btn"} onClick={() => dispatch(openAccordion({accordion: !accordion}))}>View full list {accordion ? <FiChevronUp /> : <FiChevronDown />}</button>
-              <div className={accordion ? "accordion-container" : "accordion-container accordion-hide"}>
-                {accordionDisplay.map((el, i) => {
-                  return (
-                    <Card key={i} pk={el.id} type={el.type} name={el.name} description={el.desc} spent={el.spent} createdAt={el.created_at} />
-                  )
-                })}
-              </div>
-            </div>
-
+        {/* =========== Filters Buttons =========== */}
+        <div className='filters-container'>
+          <button onClick={() => dispatch(changeFilter({newFilter: "All"}))}>All</button>
+          <button onClick={() => dispatch(changeFilter({newFilter: "Home"}))}>Home</button>
+          <button onClick={() => dispatch(changeFilter({newFilter: "Bill"}))}>Bills</button>
+          <button onClick={() => dispatch(changeFilter({newFilter: "Food"}))}>Food</button>
+          <button onClick={() => dispatch(changeFilter({newFilter: "Transport"}))}>Transport</button>
+          <button onClick={() => dispatch(changeFilter({newFilter: "Miscellaneous"}))}>Miscellaneous</button>
         </div>
+
+        {/* =========== Expenses container =========== */}
+        <div className='expenses-container'>
+          {expItems.map((el, i) => {
+            return (
+              <Card key={i} pk={el.id} type={el.type} name={el.name} description={el.desc} spent={el.spent} createdAt={el.created_at} />
+            )
+          })}
+        </div>
+
+      </div>
     </div>
   )
 }

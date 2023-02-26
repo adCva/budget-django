@@ -8,4 +8,6 @@ urlpatterns = [
     path('exp-create/', createData, name='create-data'),
     path('exp-update/<int:pk>/', updateItem, name='update-data'),
     path('exp-delete/<int:pk>/', deleteItem, name='delete-data'),
+    path('get-limit/', getLimit, name='get-limit'),
+    path('update-limit/', updateLimit, name='update-limit'),
 ]

@@ -1,33 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLimit, closeForm } from "../Redux/limitSlice";
 
+
 function LimitForm() {
     const dispatch = useDispatch();
+    const isLimitFormStarted = useSelector((state) => state.limit.limitForm);
     const [limit, setLimit] = useState(0);
     const [timeLimit, setTimeLimit] = useState();
     const [timeLimitCheck, setTimeLimitCheck] = useState(false);
-    const isLimitFormStarted = useSelector((state) => state.limit.limitForm);
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let present = new Date();
-        let limitDate = new Date(timeLimit);
-        let diff = limitDate.getTime() - present.getTime();
-
-        dispatch(changeLimit({newLimit: limit, newDate: Math.ceil(diff / (1000 * 60 * 60 * 24))}));
-    }
 
 
     const handleCheckboxChange = (event) => {
         setTimeLimitCheck(event.target.checked)
     }
 
-    useEffect(() => {
-        document.addEventListener('DOMContentLoaded', () => console.log('Limit form loaded'));
-    })
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        let present = new Date();
+        let limitDate = new Date(timeLimit);
+        let diff = limitDate.getTime() - present.getTime();
+        let remaning = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        let limitObj = {
+            id: 1,
+            total: limit,
+            dateLimit: isNaN(remaning) ? "" : remaning
+        }
+
+        try {
+            const callAPI = await axios.put('http://127.0.0.1:8000/api/update-limit/', limitObj)
+                                        .then(response => {
+                                            dispatch(changeLimit({newLimit: limit, newDate: isNaN(remaning) ? "" : remaning}));
+                                            dispatch(closeForm());
+                                        })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
     return (
         <div className={isLimitFormStarted ? "form-wrapper" : "form-wrapper form-wrapper-show"}>

@@ -90,3 +90,24 @@ def deleteItem(request, pk):
     item.delete()
 
     return Response("Item deleted!")
+
+
+
+@api_view(['GET'])
+def getLimit(request):
+    limit = SpendingLimit.objects.all()
+    serializer = SpendingLimitSerializer(limit, many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def updateLimit(request):
+    item = SpendingLimit.objects.get(id=1)
+    serializer = SpendingLimitSerializer(item, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

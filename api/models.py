@@ -29,7 +29,8 @@ class Expenditure(models.Model):
 
 
 class SpendingLimit(models.Model):
-    total = models.IntegerField()
+    total = models.CharField(max_length=240)
+    dateLimit = models.CharField(max_length=240, blank=True)
 
     def __str__(self):
         return self.total

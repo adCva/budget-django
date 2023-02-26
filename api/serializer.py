@@ -11,4 +11,5 @@ class ExpendituresSerializer(serializers.ModelSerializer):
 class SpendingLimitSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpendingLimit
-        fields = ('total',)
+        fields = '__all__'
+        # fields = ('id', 'total', 'dateLimit')

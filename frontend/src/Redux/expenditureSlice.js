@@ -9,10 +9,19 @@ export const expenditureSlice = createSlice({
     },
 
     reducers: {
-        createData: (state, action) => {
+        loadData: (state, action) => {
             let newItems = action.payload.newElement;
-            console.log(newItems)
             state.expData = newItems
+        },
+
+        createData: (state, action) => {
+            let newItem = action.payload.newElement;
+            let existingItems = [...state.expData]
+            existingItems.unshift(newItem);
+            
+            return {
+                expData: [...existingItems]
+            }
         },
 
         updateData: (state, action) => {
@@ -36,6 +45,6 @@ export const expenditureSlice = createSlice({
     }
 })
 
-export const { createData, updateData, deleteData } = expenditureSlice.actions;
+export const { loadData, createData, updateData, deleteData } = expenditureSlice.actions;
 
 export default expenditureSlice.reducer;

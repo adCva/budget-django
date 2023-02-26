@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import Content from './Components/Content';
-import Helper from './Components/Helper';
 import Hero from './Components/Hero';
 
 const CreateForm = React.lazy(() => import('./Components/CreateForm'));
@@ -12,6 +11,9 @@ function App() {
     <div className="App">
       <Hero />
       <Content />
+      <CreateForm />
+      <EditForm />
+      <LimitForm />
     </div>
   );
 }

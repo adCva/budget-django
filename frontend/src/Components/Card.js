@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 // ================== Redux.
 import { useSelector, useDispatch } from 'react-redux';
 import { startEdit } from "../Redux/editSlice";
@@ -47,7 +48,12 @@ function Card(props) {
     };
 
 
-    const deleteItem = (pk) => {
+    const deleteItem = async (pk) => {
+        try {
+            const deleteRequest = await axios.delete(`http://127.0.0.1:8000/api/exp-delete/${pk}`);
+        } catch (error) {
+            console.log(error)
+        }
         dispatch(deleteData({deleteId: pk}));
         setConfirmDelete(false);
     };

@@ -1,44 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { createData } from "../Redux/expenditureSlice";
 import { updateData } from "../Redux/expenditureSlice";
 import { closeEdit } from "../Redux/editSlice";
-import axios from 'axios';
 
 function EditForm() {
     const dispatch = useDispatch();
     const editItemData = useSelector((state) => state.edit.editExp);
     const isEditStarted = useSelector((state) => state.edit.editFormOpened);
-
-    // ================== Local state.
     const [name, setName] = useState("");
     const [desc, setDesc] = useState('');
     const [spent, setSpent] = useState();
     const [type, setType] = useState('');
-
-
-
-    // ================== Handle form submit.
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(name)
-        console.log(editItemData.name)
-
-        let updatedEl = {
-            id: editItemData.id, 
-            name: name,
-            desc: desc,
-            spent: spent,
-            type: type,
-            created_at: editItemData.created_at
-        }
-
-        const url = `127.0.0.1:8000/api/edit/${editItemData.id}`;
-        axios.post(url).then(response => dispatch(createData({newElement: response.data}))).catch(error => console.log(error))
-        dispatch(updateData({updatedElelemnt: updatedEl}));
-        dispatch(closeEdit());
-    };
 
     useEffect(() => {
         setName(editItemData.name);
@@ -47,12 +21,32 @@ function EditForm() {
         setType(editItemData.type);
     }, [isEditStarted])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const item = {
+            id: editItemData.id,
+            name: name,
+            desc: desc,
+            spent: spent,
+            type: type,
+            created_at: editItemData.created_at
+        }
+        try {
+            const editRequest = await axios.put(`http://127.0.0.1:8000/api/exp-update/${item.id}/`, item)
+                                            .then(response => {
+                                                dispatch(updateData({updatedElelemnt: response.data}));
+                                                dispatch(closeEdit());
+                                            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     
     return (
         <div className={isEditStarted ? "form-wrapper" : "form-wrapper form-wrapper-show"}>
             <div className='form-container'>
-
                 {/* ======================= Form ======================= */}
                 <form onSubmit={handleSubmit} className="form">
 

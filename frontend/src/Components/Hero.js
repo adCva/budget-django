@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { openAddItemForm } from "../Redux/globalVarSlice";
 import { openLimitForm } from "../Redux/limitSlice";
+import { changeLimit } from "../Redux/limitSlice";
 import { BsPlus } from "react-icons/bs";
 import { CgArrowsExchangeAlt } from "react-icons/cg";
+import axios from 'axios';
 
 function Hero() {
     const dispatch = useDispatch();
@@ -11,6 +13,22 @@ function Hero() {
     const reamaningDaysLimit = useSelector((state) => state.limit.remainingDays)
     const expendituresData = useSelector((state) => state.expenditures.expData);
     const getTotalSpentSum = expendituresData.map(el => el.spent).reduce((a, b) => Number(a) + Number(b), 0);
+
+
+    useEffect(() => {
+        const callLimitAPI = async () => {
+            try {
+                const callAPI = await axios.get("http://127.0.0.1:8000/api/get-limit/")
+                                            .then(response => {
+                                                dispatch(changeLimit({newLimit: response.data[0].total, newDate: response.data[0].dateLimit}));
+                                            });
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        window.addEventListener("load", callLimitAPI());
+    }, []);
     
 
     return (
@@ -30,7 +48,7 @@ function Hero() {
                         <p className='user-greet'>Hello, Obi-Wan Kenobi</p>
                         <h1><span>Total Spent:</span> $ {getTotalSpentSum.toLocaleString('en')}</h1>
                         <h4>Your Desired Spending Limit: $ {totalLimit}</h4>
-                        <h5>{isNaN(reamaningDaysLimit) ? 'No Time Limit Selected' : `${reamaningDaysLimit} Days Left`} </h5>
+                        <h5>{isNaN(reamaningDaysLimit) ? 'No Time Limit Selected' : reamaningDaysLimit === "" ? 'No Time Limit Selected' : `${reamaningDaysLimit} Days Left`} </h5>
                         <button onClick={() => dispatch(openLimitForm())}><CgArrowsExchangeAlt className='btn-icon'/>Change</button>
                     </div>
 
