@@ -5,9 +5,6 @@ You can find a demo for the frontend at: https://adCva.github.io/budget-django-f
 
 
 ### Screenshots.
-![Start-Desktop](./Screenshots/start-desktop.png)<br>
-![Start-Tablet](./Screenshots/start-tablet.png)<br>
-![Start-Phone](./Screenshots/start-phone.png)<br>
 ![Regular-Desktop](./Screenshots/regular-desktop.png)<br>
 ![Regular-Tablet](./Screenshots/regular-tablet.png)<br>
 ![Regular-Phone](./Screenshots/regular-phone.png)<br>
